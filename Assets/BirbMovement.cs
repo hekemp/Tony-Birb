@@ -47,7 +47,7 @@ public class BirbMovement : MonoBehaviour {
 	public Text scoreText;
 	public Text gameOverText;
 
-	private int score;
+	public int score;
 
 	private bool turnedOnPicture = false;
 
@@ -77,7 +77,10 @@ public class BirbMovement : MonoBehaviour {
 	}
 
 	void AddValue () {
-		score++;
+		if (!GManager.Instance.IsGameOver) {
+			score++;
+		}
+
 	}
 
 	void checkText() {
@@ -217,7 +220,7 @@ public class BirbMovement : MonoBehaviour {
 	// 5.67
 	{
 		float d = -this.transform.position.x / Mathf.Tan (80 * Mathf.Deg2Rad);
-		if (this.transform.position.y < d - 4) {
+		if (this.transform.position.y < d - 4 && !GManager.Instance.IsGameOver) {
 			//gameOverText.text = "Game Over!";
 			GManager.Instance.IsGameOver = true;
 		} else {

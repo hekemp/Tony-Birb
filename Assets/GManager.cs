@@ -11,6 +11,8 @@ public class GManager : MonoBehaviour {
 	public Button playAgain;
 	public Button returnToMenu;
 	public Image gameOverPicture;
+	public GameObject leaderboard;
+	public LeaderboardUIControl leaderboardUIControl;
 
 	public static GManager Instance {
 		get {
@@ -28,6 +30,9 @@ public class GManager : MonoBehaviour {
 				playAgain.gameObject.SetActive (true);
 				returnToMenu.gameObject.SetActive (true);
 				gameOverPicture.enabled = true;
+				Debug.Log ("Set game over");
+				leaderboardUIControl.ListTopScores ();
+				leaderboard.SetActive (true);
 			}
 		}
 	}
@@ -42,6 +47,7 @@ public class GManager : MonoBehaviour {
 		}
 
 		gameOverPicture.enabled = false;
+		leaderboard.SetActive (false);
 		playAgain.gameObject.SetActive (false);
 		returnToMenu.gameObject.SetActive (false);
 		playAgain.onClick.AddListener (RestartGame);
